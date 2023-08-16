@@ -75,12 +75,12 @@ export class CategoryComponent implements OnInit {
       id: this.dialogData.data.id,
       name: formData.name
     }
-    this.categoryService.update(data).subscribe((response:any)=>{
+    this.categoryService.add(data).subscribe((response:any)=>{
       this.dialogRef.close();
       this.onAddCategory.emit();
       this.responseMessage = response.message;
       this.snackbarService.openSnackBar(this.responseMessage,"success");
-    },(error)=>{
+    },(error:any)=>{
       this.dialogRef.close();
       console.error(error);
       if(error.error?.message){
