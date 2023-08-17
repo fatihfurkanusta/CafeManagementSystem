@@ -38,4 +38,12 @@ export class ProductService {
     return this.httpClient.post(this.url+"/product/delete/"+id,{
       headers : new HttpHeaders().set('Content-Type',"application/json")});
   }
+
+  getProductsByCategory(id:any){
+    return this.httpClient.get(this.url+"/product/getByCategory/"+id);
+  }
+
+  getById(id:any){
+    return this.httpClient.get(this.url+"/product/getById/"+id);
+  }
 }
