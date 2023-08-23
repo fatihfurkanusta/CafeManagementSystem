@@ -1,5 +1,6 @@
 package com.inn.cafe.serviceImpl;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.inn.cafe.JWT.JwtFilter;
 import com.inn.cafe.POJO.Bill;
 import com.inn.cafe.constents.CafeConstants;
@@ -41,14 +42,14 @@ public class BillServiceImpl implements BillService {
         try{
             String fileName;
             if(validateRequestMap(requestMap)){
-                if(requestMap.containsKey("isGenerate") && !(Boolean) requestMap.get("isGenerate")){
+                if(requestMap.containsKey("isGenerate") && !(Boolean)requestMap.get("isGenerate")){
                     fileName = (String) requestMap.get("uuid");
-                }else{
+                    System.out.println(fileName);
+                }else{;
                     fileName = CafeUtils.getUUID();
                     requestMap.put("uuid",fileName);
                     insertBill(requestMap);
                 }
-
                  String data = "Name: "+requestMap.get("name") + "\n"+
                          "Contact Number: "+ requestMap.get("contactNumber") + "\n"+
                          "Email: "+ requestMap.get("email") +"\n"+
@@ -155,7 +156,7 @@ public class BillServiceImpl implements BillService {
             bill.setContactNumber((String) requestMap.get("contactNumber"));
             bill.setPaymentMethod((String) requestMap.get("paymentMethod"));
             bill.setTotal(Integer.parseInt((String) requestMap.get("totalAmount")));
-            //bill.setProductDetail((String) requestMap.get("productDetails")); 8.video
+            bill.setProductDetails((String) requestMap.get("productDetails")); //8. video
             bill.setCreatedBy(jwtFilter.getCurrentUser());
 
             billDao.save(bill);

@@ -156,6 +156,7 @@ export class ManageOrderComponent implements OnInit {
 
   submitAction(){
     var formData = this.manageOrderForm.value;
+    
     var data = {
       name: formData.name,
       email: formData.email,
@@ -164,13 +165,13 @@ export class ManageOrderComponent implements OnInit {
       totalAmount: this.totalAmount.toString(),
       productDetails: JSON.stringify(this.dataSource)
     }
-
+    
     this.ngxService.start();
     this.billService.generateReport(data).subscribe((response:any)=>{
-      this.downloadFile(response?.uuid)
-      this.manageOrderForm.reset(),
-      this.dataSource = [],
-      this.totalAmount=0
+      this.downloadFile(response?.uuid);
+      this.manageOrderForm.reset();
+      this.dataSource = [];
+      this.totalAmount=0;
     },(error:any)=>{
       console.log(error);
       if(error.error?.message){

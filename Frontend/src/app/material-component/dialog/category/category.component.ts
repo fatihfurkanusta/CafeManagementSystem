@@ -75,7 +75,7 @@ export class CategoryComponent implements OnInit {
       id: this.dialogData.data.id,
       name: formData.name
     }
-    this.categoryService.add(data).subscribe((response:any)=>{
+    this.categoryService.update(data).subscribe((response:any)=>{
       this.dialogRef.close();
       this.onAddCategory.emit();
       this.responseMessage = response.message;
