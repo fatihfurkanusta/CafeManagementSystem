@@ -1,5 +1,5 @@
 # Cafe Management System
-It's a web site related to events. You can see recent events and buy tickets as use this site. 
+It is a website about cafe management system. You can order food or drinks by creating a new user.
 
 # Used Technologies
 - Java Spring Boot
